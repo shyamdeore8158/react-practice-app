@@ -1,0 +1,10 @@
+{
+    "students": [
+        {
+            "id": 1,
+            "studName": "ABC",
+            "roll": 1,
+            "gender": "Male"
+        }
+    ]
+}

@@ -1,0 +1,36 @@
+localhost:8080/api/auth/signup
+
+{
+    "username":"shyam.deore",
+    "email":"shyam123@mail.com",
+    "password":"123456",
+    "role":["user"]
+}
+
+localhost:8080/api/auth/signin
+
+{
+    "username":"shyam",
+    "password":"123456"
+}
+
+Result 
+
+{
+    "id": 1,
+    "username": "shyam",
+    "email": "shyam@mail.com",
+    "roles": [
+        "ROLE_USER",
+        "ROLE_MODERATOR"
+    ],
+    "tokenType": "Bearer",
+    "accessToken": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzaHlhbSIsImlhdCI6MTY0Njc1OTY0OCwiZXhwIjoxNjQ2ODQ2MDQ4fQ.pXX9AejD2MBk5SvO79U5RtkVL9VEjd7inZlC7u8x2a4TNmdTe-pckrVaBY6bvkRzaIIp0gGjwlqlD1B6tjpRgA"
+}
+
+
+localhost:8080/api/test/user
+
+Pass : "tokenType"
+
+User Content.

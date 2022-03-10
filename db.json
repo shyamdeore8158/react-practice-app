@@ -1,0 +1,22 @@
+{
+  "students": [
+    {
+      "studName": "json-server456456456456456456",
+      "roll": "12",
+      "gender": "Male",
+      "id": 1
+    },
+    {
+      "studName": "Ghanshyam",
+      "roll": "28",
+      "gender": "Male",
+      "id": 2
+    },
+    {
+      "studName": "32423423423423",
+      "roll": "sdasdasd",
+      "gender": "Female",
+      "id": 3
+    }
+  ]
+}
