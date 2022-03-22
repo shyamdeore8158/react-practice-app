@@ -12,6 +12,10 @@ import BoardAdmin from "./login/BoardAdmin"
 import  { useState, useEffect } from "react";
 import AuthService from "./services/auth-service";
 
+import {StudentProvider} from "./context/StudentContext"
+import Student from "./components/Student"
+import StudentList from "./components/StudentList"
+
 const App = () => {
     const [showModeratorBoard, setShowModeratorBoard] = useState(false);
     const [showAdminBoard, setShowAdminBoard] = useState(false);
@@ -32,12 +36,22 @@ const App = () => {
       <div>
         <nav className="navbar navbar-expand navbar-dark bg-dark">
           <Link to={"/"} className="navbar-brand">
-            React Practice
+            Student
           </Link>
           <div className="navbar-nav mr-auto">
             <li className="nav-item">
               <Link to={"/home"} className="nav-link">
                 Home
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link to={"/student"} className="nav-link">
+                Student
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link to={"/studentlist"} className="nav-link">
+                Student List
               </Link>
             </li>
             {showModeratorBoard && (
@@ -100,6 +114,17 @@ const App = () => {
             <Route path="/user" element={<BoardUser/>} />
             <Route path="/mod" element={<BoardModerator/>} />
             <Route path="/admin" element={<BoardAdmin/>} />
+            <Route path="/student" element={
+              <StudentProvider>
+              <Student />
+              
+            </StudentProvider>
+            }/>
+            <Route path="/studentList" element={
+              <StudentProvider>
+              <StudentList />
+            </StudentProvider>
+            }/>
           </Routes>
         </div>
       </div>

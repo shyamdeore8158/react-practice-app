@@ -3,7 +3,7 @@ import UserService from "../services/user.service";
 const BoardAdmin = () => {
   const [content, setContent] = useState("");
   useEffect(() => {
-    UserService.getUserBoard().then(
+    UserService.getAdminBoard().then(
       (response) => {
         setContent(response.data);
       },

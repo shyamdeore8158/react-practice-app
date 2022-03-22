@@ -64,7 +64,7 @@ function Login(props) {
                     alt="profile-img"
                     className="profile-img-card"
                 />
-                <Form ref={form} onSubmit={handleSubmit}>
+                <Form ref={form} onSubmit={handleSubmit} autocomplete="off">
                     <div className="form-group">
                         <label htmlFor="username">Username</label>
                         <Input type="text" className="form-control" name="username" 

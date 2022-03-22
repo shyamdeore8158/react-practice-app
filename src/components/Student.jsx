@@ -1,6 +1,9 @@
 import { useState, useContext, useEffect } from "react"
 import StudentContext from "../context/StudentContext";
 import { v4 as uuid } from "uuid"
+import Header from "./Header";
+
+import Select from "react-select"
 
 function Student() {
 
@@ -14,11 +17,20 @@ function Student() {
     const [disabled, setDisabled] = useState(false)
     let { studName, roll, gender } = formData
     const { addStudent, editable, actualUpdate } = useContext(StudentContext);
+    const [category,setCategory] = useState("")
+    const [subCategory,setSubCategory] = useState("")
+
+    const options = [
+        { value: 'chocolate', label: 'Chocolate' },
+        { value: 'strawberry', label: 'Strawberry' },
+        { value: 'vanilla', label: 'Vanilla' }
+      ]
+      
 
     // loading update data
 
     useEffect(() => {
-        console.log("useEffects",editable.edit)
+        console.log("useEffects", editable.edit)
         if (editable.edit === true) {
             setFormdata({
                 studName: editable.dbStudent.studName,
@@ -35,30 +47,63 @@ function Student() {
         })
         setSelectedOption(e.target.value);
     }
+
+    const handleCategoryChange = (e) => {
+        const value = e.value
+        setCategory(value)
+        console.log(category)
+    }
+
+    const handleSubCategoryChange = (e) => {
+        const value = e.value
+        setSubCategory(value)
+        console.log(subCategory)
+    }
+
     const submitForm = (e) => {
         e.preventDefault();
-       // console.log(formData)
-        if (editable.edit === true) {
-            actualUpdate(editable.dbStudent.id, formData);
-        }
-        else {
-            console.log("Else",formData)
-           // formData.id = uuid();
-            addStudent(formData)
-        }
+        // console.log(formData)
+        console.log(subCategory.value , category.value)
+        // if (editable.edit === true) {
+        //     actualUpdate(editable.dbStudent.id, formData);
+        // }
+        // else {
+        //     console.log("Else", formData)
+        //     // formData.id = uuid();
+        //     addStudent(formData)
+        //     setMessage("Record created successfully")
+        // }
     }
+
+    function logChange(val) {
+        console.log("Selected: " + val);
+      }
 
     return (
         <div className="container">
-            <div className="card">
-                <div className="card-header">Student Entry Form</div>
+            <Header text="TO Log Entry" />
+            <div className="card mt-1">
                 <div className="card-body">
-                    <form onSubmit={submitForm}>
+                    <form onSubmit={submitForm}>                       
+                        <div className="form-group">
+                        <Select 
+                           placeholder="Category"
+                           options={options}
+                           onChange={(value)=>setCategory(value)}
+                            />
+                        </div>
+                        <div className="form-group">
+                        <Select 
+                           placeholder="Sub Category"
+                           options={options}
+                           onChange={(value)=>setSubCategory(value)}
+                            />
+                        </div>
                         <div className="form-group">
                             <input
                                 type="text"
                                 className="form-control"
-                                placeholder="Student Name"
+                                placeholder="Category"
                                 value={studName}
                                 onChange={handleFieldChange}
                                 name="studName"
@@ -68,7 +113,7 @@ function Student() {
                             <input
                                 type="text"
                                 className="form-control"
-                                placeholder="Roll no"
+                                placeholder="Sub-Category"
                                 value={roll}
                                 onChange={handleFieldChange}
                                 name="roll"
@@ -103,9 +148,9 @@ function Student() {
                         <button className="btn btn-primary" disabled={disabled}>Save</button>
                     </form>
                 </div>
-                <div className="card-footer">
-                    {message && <p className="alert alert-warning" >{message}</p>}
-                </div>
+                {message && (
+                    <div className="alert alert-success" >{message}</div>
+                )}
 
             </div>
         </div>

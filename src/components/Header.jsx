@@ -7,13 +7,12 @@ function Header({bgColor , textColor , text})
     return(
         <header style={{headerStyle}}>
             <div className="container">
-                <h2>{text}</h2>
+                <h4>{text}</h4>
             </div>
         </header>
     )
 }
 Header.defaultProps = {  // default props
-    text: "Student UI",
     bgColor: "rgba(0,0,0,0.4)",
     textColor: "#ff6a95",
 }
